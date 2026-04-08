@@ -376,7 +376,7 @@ class MemoryUpdater:
             Updated memory data.
         """
         config = get_memory_config()
-        now = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+        now = datetime.now(timezone.UTC).isoformat().replace("+00:00", "Z")
 
         # Update user sections
         user_updates = update_data.get("user", {})
