@@ -19,7 +19,7 @@ def create_empty_memory() -> dict[str, Any]:
     """Create an empty memory structure."""
     return {
         "version": "1.0",
-        "lastUpdated": datetime.now(timezone.UTC).isoformat().replace("+00:00", "Z"),
+        "lastUpdated": datetime.now(datetime.UTC).isoformat().replace("+00:00", "Z"),
         "user": {
             "workContext": {"summary": "", "updatedAt": ""},
             "personalContext": {"summary": "", "updatedAt": ""},
@@ -137,7 +137,7 @@ class FileMemoryStorage(MemoryStorage):
 
         try:
             file_path.parent.mkdir(parents=True, exist_ok=True)
-            memory_data["lastUpdated"] = datetime.now(timezone.UTC).isoformat().replace("+00:00", "Z")
+            memory_data["lastUpdated"] = datetime.now(datetime.UTC).isoformat().replace("+00:00", "Z")
 
             temp_path = file_path.with_suffix(".tmp")
             with open(temp_path, "w", encoding="utf-8") as f:
