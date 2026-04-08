@@ -5,7 +5,7 @@ import logging
 import math
 import re
 import uuid
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any
 
 from deerflow.agents.memory.prompt import (
@@ -86,7 +86,7 @@ def create_memory_fact(
 
     normalized_category = category.strip() or "context"
     validated_confidence = _validate_confidence(confidence)
-    now = datetime.utcnow().isoformat() + "Z"
+    now = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
     memory_data = get_memory_data(agent_name)
     updated_memory = dict(memory_data)
     facts = list(memory_data.get("facts", []))
@@ -376,7 +376,7 @@ class MemoryUpdater:
             Updated memory data.
         """
         config = get_memory_config()
-        now = datetime.utcnow().isoformat() + "Z"
+        now = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
 
         # Update user sections
         user_updates = update_data.get("user", {})
